@@ -1,0 +1,10 @@
+<h1>{{key}}</h1>
+<h2>A recipe box for your favorite recipes from your favorite authors!</h2>
+<h3>Click on any recipe below to get started! </h3>
+<ul>
+    {% for recipe in recipes %}
+    <li>
+        <a href="/recipe/{{ recipe.id }}/">{{ recipe.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
