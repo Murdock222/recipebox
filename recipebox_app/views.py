@@ -23,20 +23,21 @@ def article_form(request):
             data = form.cleaned_data
             Article.objects.create(
                 title=data.get('title'),
-                body=data.get('body'),
+                # body=data.get('body'),
+                # description=data.get('description'),
                 author=data.get('author')
             )
             return HttpResponseRedirect(reverse("homepage"))
 
 
     form = ArticleForm()
-    return render(request, "article_form.html", {"form": form})
+    return render(request, "generic_form.html", {"form": form})
 
 def author_form(request):
     if request.method == "POST":
         form = AuthorForm(request.POST)
         form.save()
         return HttpResponseRedirect(reverse("homepage"))
-        
-    form = AuthorForm():
-    return render(request, "author_form.html", {"form": form})
+
+    form = AuthorForm()
+    return render(request, "generic_form.html", {"form": form})
