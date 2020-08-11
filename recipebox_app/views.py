@@ -23,9 +23,10 @@ def article_form(request):
             data = form.cleaned_data
             Article.objects.create(
                 title=data.get('title'),
-                # body=data.get('body'),
-                # description=data.get('description'),
-                author=data.get('author')
+                author=data.get('author'),
+                description=data.get('description'),
+                time_required=data.get('time_required'),
+                instructions=data.get('instructions')
             )
             return HttpResponseRedirect(reverse("homepage"))
 
