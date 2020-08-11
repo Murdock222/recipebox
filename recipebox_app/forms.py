@@ -8,7 +8,6 @@ class ArticleForm(forms.Form):
     time_required = forms.CharField(max_length=20)
     instructions = forms.CharField(widget=forms.Textarea)
 
-class AuthorForm(forms.ModelForm):
-    class Meta:
-        model = Author
-        fields = ["name"]
+class AuthorForm(forms.Form):
+    name = forms.CharField(max_length=200)
+    bio = forms.CharField(widget=forms.Textarea)

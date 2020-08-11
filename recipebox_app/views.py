@@ -37,8 +37,13 @@ def article_form(request):
 def author_form(request):
     if request.method == "POST":
         form = AuthorForm(request.POST)
-        form.save()
-        return HttpResponseRedirect(reverse("homepage"))
+        if form.is_valid():
+            data = form.cleaned_data
+            Author.objects.create(
+                name=data.get('name'),
+                bio = data.get('bio')
+            )
+            return HttpResponseRedirect(reverse("homepage"))
 
     form = AuthorForm()
     return render(request, "generic_form.html", {"form": form})
