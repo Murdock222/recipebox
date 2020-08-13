@@ -1,3 +1,11 @@
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'CSS/index.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+
 <h1>{{key}}</h1>
 <h2>A recipe box for your favorite recipes from your favorite authors!</h2>
         <p><a href="/newauthor/">New Author </a></p>
@@ -10,3 +18,4 @@
     </li>
     {% endfor %}
 </ul>
+</html>
