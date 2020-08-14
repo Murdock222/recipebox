@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from recipebox_app.views import index, about_author, about_recipe, article_form, author_form, login_view
+from recipebox_app.views import index, about_author, about_recipe, article_form, author_form, login_view, logout_view
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,5 +26,6 @@ urlpatterns = [
     path('newarticle/', article_form, name="newarticle"),
     path('newauthor/', author_form, name="newauthor"),
     path('login/', login_view, name="loginview"),
+    path('logout/', logout_view, name="logoutview"),
     path('admin/', admin.site.urls),
 ] 

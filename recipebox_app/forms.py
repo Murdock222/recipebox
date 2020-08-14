@@ -15,3 +15,5 @@ class AuthorForm(forms.Form):
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=240)
     password = forms.CharField(widget=forms.PasswordInput)
+
+# class LogoutForm(forms.Form):
