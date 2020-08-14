@@ -56,10 +56,10 @@ def login_view(request):
             data = form.cleaned_data
             user = authenticate(request, username=data.get("username"), password=data.get("password"))
             if user:
-                login(request, user) # sets session cookie
-                return HttpResponseRedirect(request.GET.get('next', reverse("homepage")))
+                login(request, user) #sets session cookie, server has recognized this user as being authorized, magic piece
+                return HttpResponseRedirect(request.GET.get('next', reverse("homepage"))) #need to figure out the re-dir later but thankfully we're on the back end and WE dont CARE! JKJK figure out how to direct this after the request has been made 
 
-    form = LoginForm()
+    form = LoginForm() #fallback if we get the wrong info
     return render(request, "generic_form.html", {"form": form})
 
 
