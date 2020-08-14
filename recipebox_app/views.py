@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect, reverse
 from .models import *
 from .forms import ArticleForm, AuthorForm, LoginForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -17,6 +18,7 @@ def about_recipe(request, recipe_id):
     this_recipe = Article.objects.filter(id=recipe_id).first()
     return render(request, "recipe_info.html", {"recipe": this_recipe})
 
+@login_required
 def article_form(request):
     if request.method == "POST":
         form = ArticleForm(request.POST)
@@ -35,6 +37,7 @@ def article_form(request):
     form = ArticleForm()
     return render(request, "generic_form.html", {"form": form})
 
+@login_required
 def author_form(request):
     if request.method == "POST":
         form = AuthorForm(request.POST)
