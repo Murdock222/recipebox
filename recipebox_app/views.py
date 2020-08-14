@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from .models import *
-from .forms import ArticleForm, AuthorForm
+from .forms import ArticleForm, AuthorForm, LoginForm
+from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
 def index(request):
@@ -47,3 +48,21 @@ def author_form(request):
 
     form = AuthorForm()
     return render(request, "generic_form.html", {"form": form})
+
+def login_view(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user = authenticate(request, username=data.get("username"), password=data.get("password"))
+            if user:
+                login(request, user) # sets session cookie
+                return HttpResponseRedirect(request.GET.get('next', reverse("homepage")))
+
+    form = LoginForm()
+    return render(request, "generic_form.html", {"form": form})
+
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(reverse("homepage"))
