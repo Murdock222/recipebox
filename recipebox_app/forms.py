@@ -1,5 +1,5 @@
 from django import forms
-from .models import Author
+from .models import Author, Article
 
 class ArticleForm(forms.Form):
     title = forms.CharField(max_length=200)

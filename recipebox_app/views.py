@@ -39,14 +39,17 @@ def article_form(request):
 
 @login_required
 def author_form(request):
-    if request.method == "POST":
-        form = AuthorForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            Author.objects.create(
-                name=data.get('name'),
-                bio = data.get('bio')
-            )
+    if request.user.is_staff:
+        if request.method == "POST":
+            form = AuthorForm(request.POST)
+            if form.is_valid():
+                data = form.cleaned_data
+                new_user = User.objects.create_user(username=data.get("username"), password=data.get("password"))
+                Author.objects.create(
+                    name=data.get('name'),
+                    user=new_user,
+                    bio = data.get('bio')
+                )
             return HttpResponseRedirect(reverse("homepage"))
 
     form = AuthorForm()
