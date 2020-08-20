@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import render, HttpResponseRedirect, reverse, HttpResponse
 from .models import *
 from .forms import ArticleForm, AuthorForm, LoginForm
 from django.contrib.auth import login, logout, authenticate
@@ -52,7 +52,7 @@ def author_form(request):
                 )
             return HttpResponseRedirect(reverse("homepage"))
     else:
-        return HttpResponseForbidden("This action is forbidden")
+        return HttpResponse("This action is forbidden")
     form = AuthorForm()
     return render(request, "generic_form.html", {"form": form})
 
