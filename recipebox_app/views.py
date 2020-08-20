@@ -46,12 +46,13 @@ def author_form(request):
                 data = form.cleaned_data
                 new_user = User.objects.create_user(username=data.get("username"), password=data.get("password"))
                 Author.objects.create(
-                    name=data.get('name'),
-                    user=new_user,
+                    name = data.get('name'),
+                    user = new_user,
                     bio = data.get('bio')
                 )
             return HttpResponseRedirect(reverse("homepage"))
-
+    else:
+        return HttpResponseForbidden("This action is forbidden")
     form = AuthorForm()
     return render(request, "generic_form.html", {"form": form})
 
