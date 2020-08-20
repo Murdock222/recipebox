@@ -24,6 +24,7 @@ urlpatterns = [
     path('recipe/<int:recipe_id>/', about_recipe),
     path('author/<int:author_id>/', about_author),
     path('newarticle/', article_form, name="newarticle"),
+    # path('articleform/', article_form, name="newarticle"),
     path('newauthor/', author_form, name="newauthor"),
     path('login/', login_view, name="loginview"),
     path('logout/', logout_view, name="logoutview"),

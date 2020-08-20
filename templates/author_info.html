@@ -20,3 +20,7 @@
     {% endfor %}
 </ul>
 {% endif %}
+{%if request.user.is_superuser%}
+<h3> Hello {{request.user}}!</h3>
+{% endif %}
+<a href="/">Go to Home Page</a>

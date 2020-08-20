@@ -3,7 +3,7 @@ from .models import Author, Article
 
 class ArticleForm(forms.Form):
     title = forms.CharField(max_length=200)
-    author = forms.ModelChoiceField(queryset=Author.objects.all())
+    author = forms.ModelChoiceField(queryset=Author.objects.all(), required=False)
     description = forms.CharField(widget=forms.Textarea)
     time_required = forms.CharField(max_length=20)
     instructions = forms.CharField(widget=forms.Textarea)

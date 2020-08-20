@@ -24,18 +24,28 @@ def article_form(request):
         form = ArticleForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
+            #if/else if user is staff make variable
+            #else request.user.author
+            if request.user.is_staff:
+                staff_auth=data.get('author')
+            else:
+                staff_auth=request.user.author
+
             Article.objects.create(
                 title=data.get('title'),
-                author=data.get('author'),
+                author=staff_auth,
                 description=data.get('description'),
                 time_required=data.get('time_required'),
                 instructions=data.get('instructions')
-            )
+            ) 
             return HttpResponseRedirect(reverse("homepage"))
-
+    if request.user.is_staff:
+        auth_list=Author.objects.all()
+    else:
+        auth_list= ""
 
     form = ArticleForm()
-    return render(request, "generic_form.html", {"form": form})
+    return render(request, "recipe_info.html", {"form": form})
 
 @login_required
 def author_form(request):
