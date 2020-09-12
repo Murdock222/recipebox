@@ -27,8 +27,12 @@
     <label for="time_required">Time Required:</label>
     <p>{{ form.time_required }}</p>
     <br>
-    <input type="submit" value="Submit Article">
-</form>
+    <input type="submit" value="Submit Article">   
+</form>  
+{% if request.user.is_authenticated %}
+    <a href="{% url 'add_favorite' id=recipe_id %}?next={% url 'about_recipe' id=recipe_id|urlencode%}">
+    <button>Add to Favorites</button></a>
+{% endif %}
 {%if request.user.is_superuser%}
 <h3> Hello {{request.user}}!</h3>
 {% endif %}

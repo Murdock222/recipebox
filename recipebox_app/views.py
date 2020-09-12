@@ -48,6 +48,41 @@ def article_form(request):
     return render(request, "recipe_info.html", {"form": form})
 
 @login_required
+def article_edit_view(request, recipe_id):
+    article = Article.objects.get(id=recipe_id)
+    if request.method == "POST":
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            article.title = data["title"]
+            article.description = data["description"]
+            article.instructions = data["instructions"]
+            article.time_required = data["time_required"]
+            article.save()
+            return HttpResponseRedirect(reverse("homepage", args=[recipe_id]))
+
+    data = {
+        "title": article.title,
+        "description": article.description,
+        "instructions": article.instructions,
+        "time_required": article.time_required 
+    }
+    form = ArticleForm()
+    return render(request, "generic_form.html", {"form": form})
+
+@login_required
+def add_favorite(request, recipe_id):
+    logged_in_user = Author.objects.get(name=request.user.username)
+    recipe = Article.objects.get(id=id)
+    logged_in_user.favorites.add(recipe)
+    logged_in_user.save()
+    
+    return HttpResponseRedirect(request.GET.get("next", reverse("homepage")))
+
+
+
+
+@login_required
 def author_form(request):
     if request.user.is_staff:
         if request.method == "POST":

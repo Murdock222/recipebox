@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: recipebox
+Version: 0.1.0
+Summary: Creating an application that serves recipes from different authors.
+Home-page: UNKNOWN
+Author: Leanne Benson
+Author-email: stylistleannerowe@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.8,<4.0

@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from recipebox_app.views import index, about_author, about_recipe, article_form, author_form, login_view, logout_view
+from recipebox_app.views import index, about_author, about_recipe, article_form, author_form, login_view, logout_view, article_edit_view, add_favorite
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('', index, name="homepage"),
+    path('recipe/<int:recipe_id>/edit/', article_edit_view, name="recipe_edit"),
     path('recipe/<int:recipe_id>/', about_recipe),
     path('author/<int:author_id>/', about_author),
     path('newarticle/', article_form, name="newarticle"),
@@ -28,5 +29,6 @@ urlpatterns = [
     path('newauthor/', author_form, name="newauthor"),
     path('login/', login_view, name="loginview"),
     path('logout/', logout_view, name="logoutview"),
+    path("addfavorite/<int:id>/", add_favorite, name="add_favorite"),
     path('admin/', admin.site.urls),
 ] 

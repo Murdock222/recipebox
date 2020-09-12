@@ -18,8 +18,14 @@
             <a href="/recipe/{{ recipe.id }}/">{{ recipe.title }}</a>
         </li>
     {% endfor %}
+    {% for favorite in favorites %}
+        <a href="/recipe/{{favorite_id}}/">{{ favorite }}</a>
+    {% empty %}
+        <li>There isn't any favorites yet.</li>
+    {% endfor %}
 </ul>
 {% endif %}
+
 {%if request.user.is_superuser%}
 <h3> Hello {{request.user}}!</h3>
 {% endif %}

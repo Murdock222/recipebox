@@ -27,7 +27,7 @@
     <label for="time_required">Time Required:</label>
     <p>{{ form.time_required }}</p>
     <br>
-    <input type="submit" value="Submit Article">
+    <input type="submit" value="Submit Article">  
 </form>
 {%if request.user.is_superuser%}
 <h3> Hello {{request.user}}!</h3>
